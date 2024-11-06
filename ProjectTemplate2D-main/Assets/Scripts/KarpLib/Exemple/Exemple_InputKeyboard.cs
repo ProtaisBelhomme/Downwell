@@ -36,19 +36,19 @@ public class Exemple_InputKeyboard : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Space key is pressed");
             onJump?.Invoke();
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Debug.Log("Left mouse button is pressed");
             onClickGauche?.Invoke();
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
             Debug.Log("Right mouse button is pressed");
             onClickDroit?.Invoke();

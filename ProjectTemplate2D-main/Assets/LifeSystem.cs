@@ -33,6 +33,7 @@ public class LifeSystem : MonoBehaviour
     private void Die()
     {
         life = 0;
+        Debug.Log("MORT");
         onDie?.Invoke();
     }
 

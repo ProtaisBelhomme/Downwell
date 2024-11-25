@@ -13,7 +13,7 @@ public class escargot : MonoBehaviour
     private Vector2 moveDirection; // Direction de déplacement actuelle
     [SerializeField]
     private LayerMask LayerMask;
-
+    private LifeSystem lifeSystem;
     private Rigidbody2D rb; // Référence au Rigidbody2D
     // Start is called before the first frame update
     void Start()
@@ -21,6 +21,11 @@ public class escargot : MonoBehaviour
         life = maxLife;
         rb = GetComponent<Rigidbody2D>();
         moveDirection = Vector2.down;
+        lifeSystem = GetComponent<LifeSystem>();
+        lifeSystem.onDie.AddListener(() =>
+        {
+            Destroy(gameObject); // Détruit l'objet blob
+        });
     }
 
     // Update is called once per frame

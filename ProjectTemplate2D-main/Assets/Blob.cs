@@ -9,7 +9,8 @@ public class Blob : MonoBehaviour
     public float randomMoveSpeed = 0.5f; // Vitesse des mouvements aléatoires
     public float followSpeed = 1f; // Vitesse de suivi du joueur
     public float detectionRadius = 7f; // Rayon de détection du joueur
-
+    public bool ecrasable = true;
+    
     [SerializeField]
     private LayerMask LayerMask;
 
@@ -24,6 +25,11 @@ public class Blob : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         lifeSystem = GetComponent<LifeSystem>();
+
+        lifeSystem.onDie.AddListener(() =>
+        {
+            Destroy(gameObject); // Détruit l'objet blob
+        });
         // Trouve le joueur par tag (assurez-vous que le joueur a le tag "Player")
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
@@ -52,7 +58,7 @@ public class Blob : MonoBehaviour
         Debug.DrawLine(rb.position, rb.position + rb.velocity.normalized * 5f, result.collider == null ? Color.red : Color.green);
         if (result.collider != null)
         {
-            Debug.Log("Collision détectée avec");
+            
             ChangeRandomDirection();
         }
 
@@ -95,11 +101,13 @@ public class Blob : MonoBehaviour
                 // Si le joueur attaque par le haut
                 if (contactPoint.y > blobPosition.y + 0.1f)
                 {
-                    lifeSystem.TakeDamage(1); // Le blob prend 1 dégât
+                    lifeSystem.TakeDamage(3); // Le blob prend 1 dégât
+                    
                 }
                 else
                 {
-                    playerLife.TakeDamage(1); // Le joueur prend 1 dégât
+                    playerLife.TakeDamage(1);
+
                 }
             }
         }

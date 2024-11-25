@@ -19,20 +19,14 @@ public class playercontrollerenlegende : MonoBehaviour
 
     public void Jump(float force)
     {
-        if (Mathf.Approximately(body.velocity.y, 0))
-        {
-            body.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-        }
-        else
-        {
-            body.AddForce(Vector2.up * force/2, ForceMode2D.Impulse);
-            Debug.Log("attack");
-        }
-        
+        body.velocity = new Vector2 (body.velocity.x, 0);
+        body.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        Debug.Log("shoot");
     }
 
     public void MoveLateral(float force)
     {
-        body.AddForce(Vector2.right *  force * Time.deltaTime , ForceMode2D.Force);
+        body.velocity = new Vector2(0, body.velocity.y);
+        body.AddForce(Vector2.right * force, ForceMode2D.Impulse);
     }
 }

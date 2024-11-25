@@ -8,8 +8,8 @@ public class Exemple_InputKeyboard : MonoBehaviour
     [HorizontalLine(color: EColor.Blue)]
     public KeyCode upKey = KeyCode.Z;
     public KeyCode downKey = KeyCode.S;
-    public KeyCode leftKey = KeyCode.Q;
-    public KeyCode rightKey = KeyCode.D;
+    public KeyCode leftKey = KeyCode.LeftArrow;
+    public KeyCode rightKey = KeyCode.RightArrow;
 
     [HorizontalLine(color: EColor.Red)]
     public UnityEvent onJump;
@@ -22,16 +22,16 @@ public class Exemple_InputKeyboard : MonoBehaviour
     {
         upKey = KeyCode.Z;
         downKey = KeyCode.S;
-        leftKey = KeyCode.Q;
-        rightKey = KeyCode.D;
+        leftKey = KeyCode.LeftArrow;
+        rightKey = KeyCode.RightArrow;
     }
     [Button]
     public void SwitchToQWERTY()
     {
         upKey = KeyCode.W;
         downKey = KeyCode.S;
-        leftKey = KeyCode.A;
-        rightKey = KeyCode.D;
+        leftKey = KeyCode.LeftArrow;
+        rightKey = KeyCode.RightArrow;
     }
 
     void Update()
@@ -42,13 +42,13 @@ public class Exemple_InputKeyboard : MonoBehaviour
             onJump?.Invoke();
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetKey(leftKey))
         {
             Debug.Log("Left mouse button is pressed");
             onClickGauche?.Invoke();
         }
 
-        if (Input.GetMouseButton(1))
+        if (Input.GetKey(rightKey))
         {
             Debug.Log("Right mouse button is pressed");
             onClickDroit?.Invoke();

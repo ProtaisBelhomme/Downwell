@@ -65,16 +65,7 @@ public class playercontrollerenlegende : MonoBehaviour
         body.velocity = new Vector2(0, body.velocity.y);
         body.AddForce(Vector2.right * force, ForceMode2D.Impulse);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // V�rifie si le personnage touche le sol
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            Debug.Log("true");
-        }
-    }
+   
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -104,6 +95,11 @@ public class playercontrollerenlegende : MonoBehaviour
             // Pour le d�bogage : Afficher dans la console le r�sultat de la force appliqu�e
             
         }
-    
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            Debug.Log("true");
+        }
+
     }
 }

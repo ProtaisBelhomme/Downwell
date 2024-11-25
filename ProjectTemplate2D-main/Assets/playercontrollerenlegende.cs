@@ -7,6 +7,11 @@ using UnityEngine;
 public class playercontrollerenlegende : MonoBehaviour
 {
     private Rigidbody2D body;
+    private bool isGrounded;
+    public GameObject projectilePrefab; // Le prefab de la munition
+    public Transform spawnPoint;        // Le point de spawn de la munition
+    public float shootForce = 10f;
+
     private LifeSystem lifeSystem;
     public float knockbackForce = 5f;
   
@@ -16,7 +21,7 @@ public class playercontrollerenlegende : MonoBehaviour
         lifeSystem = GetComponent<LifeSystem>();
         lifeSystem.onDie.AddListener(() =>
         {
-            Destroy(gameObject); // Détruit l'objet blob
+            Destroy(gameObject); // Dï¿½truit l'objet blob
         });
 
         
@@ -29,15 +34,46 @@ public class playercontrollerenlegende : MonoBehaviour
 
     public void Jump(float force)
     {
-        body.velocity = new Vector2 (body.velocity.x, 0);
-        body.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-        Debug.Log("shoot");
+        if (isGrounded)
+        {
+            body.velocity = new Vector2(body.velocity.x, 0);
+            body.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+            isGrounded = false;
+            Debug.Log("jump");
+        }
+        else
+        {
+            body.velocity = new Vector2(body.velocity.x, 0);
+            body.AddForce(Vector2.up * force/5, ForceMode2D.Impulse);
+
+            // Instancie la munition au point de spawn
+            GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
+
+            // Applique une force vers le bas
+            Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+            if (projectileRb != null)
+            {
+                projectileRb.AddForce(Vector2.down * shootForce, ForceMode.Impulse);
+            }
+            Debug.Log("shoot");
+            Destroy(projectile, 0.1f);
+        }
     }
 
     public void MoveLateral(float force)
     {
         body.velocity = new Vector2(0, body.velocity.y);
         body.AddForce(Vector2.right * force, ForceMode2D.Impulse);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Vï¿½rifie si le personnage touche le sol
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            Debug.Log("true");
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -50,7 +86,7 @@ public class playercontrollerenlegende : MonoBehaviour
             if (contactPoint.y < transform.position.y + 0.1f) 
             {
                 body.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
-                Debug.Log("Knockback appliqué : " + knockbackDirection * knockbackForce);
+                Debug.Log("Knockback appliquï¿½ : " + knockbackDirection * knockbackForce);
                 
 
             }
@@ -65,7 +101,7 @@ public class playercontrollerenlegende : MonoBehaviour
             // Applique la force d'impulsion pour repousser le joueur vers le haut
             
 
-            // Pour le débogage : Afficher dans la console le résultat de la force appliquée
+            // Pour le dï¿½bogage : Afficher dans la console le rï¿½sultat de la force appliquï¿½e
             
         }
     

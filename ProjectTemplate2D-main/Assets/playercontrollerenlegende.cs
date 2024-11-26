@@ -11,6 +11,7 @@ public class playercontrollerenlegende : MonoBehaviour
     public GameObject projectilePrefab; // Le prefab de la munition
     public Transform spawnPoint;        // Le point de spawn de la munition
     public float shootForce = 10f;
+    private int ammo = 8;
 
     private LifeSystem lifeSystem;
     public float knockbackForce = 5f;
@@ -43,20 +44,28 @@ public class playercontrollerenlegende : MonoBehaviour
         }
         else
         {
-            body.velocity = new Vector2(body.velocity.x, 0);
-            body.AddForce(Vector2.up * force/5, ForceMode2D.Impulse);
+            if (ammo > 0) {
+                body.velocity = new Vector2(body.velocity.x, 0);
+                body.AddForce(Vector2.up * force / 8, ForceMode2D.Impulse);
 
-            // Instancie la munition au point de spawn
-            GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
+                // Instancie la munition au point de spawn
+                GameObject projectile = Instantiate(projectilePrefab, spawnPoint.position, Quaternion.identity);
+                Debug.Log("Tag du projectile : " + projectile.tag);
 
-            // Applique une force vers le bas
-            Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-            if (projectileRb != null)
-            {
-                projectileRb.AddForce(Vector2.down * shootForce, ForceMode.Impulse);
+                // Applique une force vers le bas
+                Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+                if (projectileRb != null)
+                {
+                    projectileRb.AddForce(Vector2.down * shootForce, ForceMode.Impulse);
+                }
+                Debug.Log(ammo);
+                ammo = ammo - 1;
+                Destroy(projectile, 0.5f);
             }
-            Debug.Log("shoot");
-            Destroy(projectile, 0.1f);
+            else
+            {
+                Debug.Log("no more ammo");
+            }
         }
     }
 
@@ -77,8 +86,8 @@ public class playercontrollerenlegende : MonoBehaviour
             if (contactPoint.y < transform.position.y + 0.1f) 
             {
                 body.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
-                Debug.Log("Knockback appliqu� : " + knockbackDirection * knockbackForce);
-                
+                Debug.Log("Knockback appliqué : " + knockbackDirection * knockbackForce);
+                ammo = 8;
 
             }
             else
@@ -98,6 +107,7 @@ public class playercontrollerenlegende : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            ammo = 8;
             Debug.Log("true");
         }
 

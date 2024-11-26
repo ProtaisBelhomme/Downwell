@@ -111,5 +111,18 @@ public class Blob : MonoBehaviour
                 }
             }
         }
+        else
+        {
+            Debug.Log("not a player");
+        }
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+                      lifeSystem.TakeDamage(1); // Le blob prend 1 dégât
+            Debug.Log("AIIIIIIIIIIIIE");
+        }
+        else
+        {
+            Debug.Log("not a Bullet");
+        }
     }
     }

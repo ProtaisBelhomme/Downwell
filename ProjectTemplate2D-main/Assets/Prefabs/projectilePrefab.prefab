@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5510367580306919725}
   - component: {fileID: 7251559372747783797}
   - component: {fileID: 8211854002724086862}
+  - component: {fileID: 3969598734592763480}
+  - component: {fileID: 315660269890680582}
   m_Layer: 8
   m_Name: projectilePrefab
   m_TagString: Bullet
@@ -112,7 +114,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8211854002724086862
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -158,3 +160,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &3969598734592763480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860323912946753331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9fd40185c672c49a1314336e901625, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 0
+  maxLife: 3
+  onDie:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &315660269890680582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860323912946753331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c0c968e20f25248915d38e823cc0ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  shootForce: 10
+  knockbackForce: 5

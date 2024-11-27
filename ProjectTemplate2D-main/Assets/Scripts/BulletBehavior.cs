@@ -32,7 +32,7 @@ public class BulletBehaviour : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("ennemie"))
+       if (collision.gameObject.CompareTag("ennemie"))
         {
             Vector2 contactPoint = collision.GetContact(0).point;
             Vector2 knockbackDirection = Vector2.up;
@@ -41,6 +41,7 @@ public class BulletBehaviour : MonoBehaviour {
             {
                 body.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
                 Debug.Log("Knockback appliqué : " + knockbackDirection * knockbackForce);
+                
             }
             else
             {
@@ -49,7 +50,12 @@ public class BulletBehaviour : MonoBehaviour {
             }
 
         }
-     
+       if (gameObject != null)
+        {
+            Destroy(gameObject);
+        }
+        
+        
 
     }
 }

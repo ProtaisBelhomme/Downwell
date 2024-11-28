@@ -58,14 +58,6 @@ public class playercontrollerenlegende : MonoBehaviour
                 {
                     projectileRb.AddForce(Vector2.down * shootForce, ForceMode.Impulse);
                 }
-
-                CameraShake cameraShake = Camera.main.GetComponent<CameraShake>();
-               
-                if (cameraShake != null)
-                {
-                    
-                    StartCoroutine(cameraShake.Shake(0.2f, 0.05f)); // Durée 0.2s, magnitude 0.3
-                }
                
 
                 Debug.Log(ammo);

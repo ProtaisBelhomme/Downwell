@@ -806,6 +806,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Escargot
       objectReference: {fileID: 0}
+    - target: {fileID: 8425549484359214773, guid: 61a1f41b22bf8ab418b09ec1621bfa0c, type: 3}
+      propertyPath: m_Mass
+      value: 0.6901559
+      objectReference: {fileID: 0}
     - target: {fileID: 8766412742588833906, guid: 61a1f41b22bf8ab418b09ec1621bfa0c, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.016661113

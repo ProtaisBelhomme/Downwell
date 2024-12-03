@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,8 +8,10 @@ public class LifeSystem : MonoBehaviour
 {
     public int life = 0;
     public int maxLife = 3;
+    
 
     public UnityEvent onDie;
+
 
     private void Start()
     {

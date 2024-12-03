@@ -11,8 +11,8 @@ public class playercontrollerenlegende : MonoBehaviour
     public GameObject projectilePrefab; // Le prefab de la munition
     public Transform spawnPoint;        // Le point de spawn de la munition
     public float shootForce = 10f;
-    private int ammo = 8;
-
+    public int ammo = 8;
+    public GameObject[] bullets;
     private LifeSystem lifeSystem;
     public float knockbackForce = 5f;
   
@@ -20,6 +20,7 @@ public class playercontrollerenlegende : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         lifeSystem = GetComponent<LifeSystem>();
+        UpdateAmmoUI();
         lifeSystem.onDie.AddListener(() =>
         {
             Destroy(gameObject); // D�truit l'objet blob
@@ -27,6 +28,25 @@ public class playercontrollerenlegende : MonoBehaviour
 
         
     }
+
+    private void UpdateAmmoUI()
+    {
+        for (int i = 0; i < bullets.Length; i++)
+        {
+            // Si l'indice de l'élément est plus grand ou égal au nombre de munitions, désactiver l'image
+            if (i >= ammo)
+            {
+                bullets[i].SetActive(false);  // Désactive l'image de munition
+            }
+            else
+            {
+                bullets[i].SetActive(true);   // Active l'image de munition
+            }
+        }
+    }
+
+
+
 
     private void Awake()
     {
@@ -62,6 +82,7 @@ public class playercontrollerenlegende : MonoBehaviour
 
                 Debug.Log(ammo);
                 ammo = ammo - 1;
+                UpdateAmmoUI();
                 Destroy(projectile, 0.5f);
             }
             else
@@ -110,6 +131,7 @@ public class playercontrollerenlegende : MonoBehaviour
         {
             isGrounded = true;
             ammo = 8;
+            UpdateAmmoUI();
             Debug.Log("true");
         }
 

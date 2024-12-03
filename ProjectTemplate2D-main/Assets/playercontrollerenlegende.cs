@@ -129,10 +129,16 @@ public class playercontrollerenlegende : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Ground"))
         {
-            isGrounded = true;
-            ammo = 8;
-            UpdateAmmoUI();
-            Debug.Log("true");
+            Vector2 contactPoint = collision.GetContact(0).point; // Point de contact
+            Vector2 playerPosition = transform.position;
+
+            if (contactPoint.y < playerPosition.y + 0.1f)
+            {
+                isGrounded = true;
+                ammo = 8;
+                UpdateAmmoUI();
+                Debug.Log("sooool");
+            }
         }
 
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8965612901222795824}
   - component: {fileID: 4957393942337740083}
   - component: {fileID: 2839632156952117975}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (6)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 2115009885748858333}
   - component: {fileID: 4261338679923753323}
   - component: {fileID: 111663412889816111}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (16)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 7380145831984601938}
   - component: {fileID: 344994901749365605}
   - component: {fileID: 7875755717713514650}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (10)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -698,7 +698,7 @@ GameObject:
   - component: {fileID: 388205960748642521}
   - component: {fileID: 5823624465826553752}
   - component: {fileID: 8911620514704223270}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (11)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -828,7 +828,7 @@ GameObject:
   - component: {fileID: 7350803262761549939}
   - component: {fileID: 8314085663342746350}
   - component: {fileID: 4282871219031936843}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (8)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -958,7 +958,7 @@ GameObject:
   - component: {fileID: 4298921063191279466}
   - component: {fileID: 8171512139692988102}
   - component: {fileID: 2174859554296497553}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1088,7 +1088,7 @@ GameObject:
   - component: {fileID: 3421552860149196925}
   - component: {fileID: 551519380899630213}
   - component: {fileID: 118820116146599782}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square (3)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1218,7 +1218,7 @@ GameObject:
   - component: {fileID: 7105576864537878697}
   - component: {fileID: 5345964326398561517}
   - component: {fileID: 316567321993796469}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Square
   m_TagString: Ground
   m_Icon: {fileID: 0}

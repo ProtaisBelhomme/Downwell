@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8766412742588833906}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Escargot
-  m_TagString: Untagged
+  m_TagString: ennemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,6 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 0
   maxLife: 3
+  vie: []
   onDie:
     m_PersistentCalls:
       m_Calls: []

@@ -674,7 +674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b5e6be7591f934d98d055a1aab4499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneToLoad: 1_MainGame
+  SceneToLoad: Level
   pausePanel: {fileID: 1773070064}
 --- !u!1 &1390297046
 GameObject:
@@ -1044,6 +1044,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 633b9684922fabb4c9f836a2eeef78e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  shootForce: 10
+  knockbackForce: 5
+--- !u!114 &1520800989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520800982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb9fd40185c672c49a1314336e901625, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 0
+  maxLife: 3
+  onDie:
+    m_PersistentCalls:
+      m_Calls: []
   projectilePrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
   shootForce: 10

@@ -13,14 +13,20 @@ public class escargot : MonoBehaviour
     private Vector2 moveDirection; // Direction de d�placement actuelle
     [SerializeField]
     private LayerMask LayerMask;
-
+    private LifeSystem lifeSystem;
     private Rigidbody2D rb; // R�f�rence au Rigidbody2D
     // Start is called before the first frame update
     void Start()
     {
         life = maxLife;
         rb = GetComponent<Rigidbody2D>();
+        lifeSystem = GetComponent<LifeSystem>();
         moveDirection = Vector2.down;
+
+        lifeSystem.onDie.AddListener(() =>
+        {
+            Destroy(gameObject); // Détruit l'objet blob
+        });
     }
 
     // Update is called once per frame
@@ -53,6 +59,12 @@ public class escargot : MonoBehaviour
             {
                 playerLife.TakeDamage(1);
             }
+            
+        }
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            lifeSystem.TakeDamage(1);
+            Debug.Log("AIIIIIIIIIIIIE");
         }
     }
 }

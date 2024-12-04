@@ -1612,6 +1612,10 @@ MonoBehaviour:
   - {fileID: 9201543435384762875}
   - {fileID: 1325087888135655353}
   knockbackForce: 50
+  shootSound: {fileID: 8300000, guid: f6a27e916e3bca644845e317dc4885b4, type: 3}
+  ecrasementSound: {fileID: 8300000, guid: 4a42c61b7f53b494f9340c68ce43e044, type: 3}
+  dmgSound: {fileID: 8300000, guid: faa093586eb548740b06506b8640a42e, type: 3}
+  groundSound: {fileID: 8300000, guid: 4729ddb712b8d60428c1937158392b14, type: 3}
 --- !u!114 &2752129760474501615
 MonoBehaviour:
   m_ObjectHideFlags: 0

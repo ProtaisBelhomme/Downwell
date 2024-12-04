@@ -15,7 +15,12 @@ public class playercontrollerenlegende : MonoBehaviour
     public GameObject[] bullets;
     private LifeSystem lifeSystem;
     public float knockbackForce = 5f;
-  
+
+    public AudioClip shootSound;  // Le son que tu veux jouer lorsqu'on tire
+    public AudioClip ecrasementSound;
+    public AudioClip dmgSound;
+    public AudioClip groundSound;
+    private AudioSource audioSource;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -25,8 +30,12 @@ public class playercontrollerenlegende : MonoBehaviour
         {
             Destroy(gameObject); // D�truit l'objet blob
         });
+        if (audioSource == null)
+        {
+            // Si pas d'AudioSource attaché, en créer un
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
 
-        
     }
 
     private void UpdateAmmoUI()
@@ -78,7 +87,10 @@ public class playercontrollerenlegende : MonoBehaviour
                 {
                     projectileRb.AddForce(Vector2.down * shootForce, ForceMode.Impulse);
                 }
-               
+                if (audioSource != null && shootSound != null)
+                {
+                    audioSource.PlayOneShot(shootSound);  // Joue le son du tir
+                }
 
                 Debug.Log(ammo);
                 ammo = ammo - 1;
@@ -108,6 +120,10 @@ public class playercontrollerenlegende : MonoBehaviour
 
             if (contactPoint.y < transform.position.y + 0.1f) 
             {
+                if (audioSource != null && ecrasementSound != null)
+                {
+                    audioSource.PlayOneShot(ecrasementSound);  
+                }
                 body.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
                 Debug.Log("Knockback appliqué : " + knockbackDirection * knockbackForce);
                 ammo = 8;
@@ -115,8 +131,12 @@ public class playercontrollerenlegende : MonoBehaviour
             }
             else
             {
+                
+                if (audioSource != null && dmgSound != null)
+                {
+                    audioSource.PlayOneShot(dmgSound);  
+                }
                 lifeSystem.TakeDamage(1);
-
             }
 
            
@@ -136,6 +156,10 @@ public class playercontrollerenlegende : MonoBehaviour
             {
                 isGrounded = true;
                 ammo = 8;
+                if (audioSource != null && groundSound != null)
+                {
+                    audioSource.PlayOneShot(groundSound);
+                }
                 UpdateAmmoUI();
                 Debug.Log("sooool");
             }

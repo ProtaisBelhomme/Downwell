@@ -3,6 +3,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class LifeSystem : MonoBehaviour
 {
@@ -12,11 +13,16 @@ public class LifeSystem : MonoBehaviour
 
     public UnityEvent onDie;
 
+    public Renderer playerRenderer;  // Référence au Renderer du joueur pour modifier la couleur
+    public Color damageColor = Color.red; // Couleur à appliquer lors des dégâts
+    public Color normalColor = Color.white;
 
     private void Start()
     {
         FullHeal();
         UpdateVieUI();
+        if (playerRenderer == null)
+            playerRenderer = GetComponent<Renderer>();
     }
 
 
@@ -42,14 +48,29 @@ public class LifeSystem : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+
         life -= damage;
         UpdateVieUI();
         life = Mathf.Clamp(life, 0, maxLife);
 
-        if(life <= 0 )
+        StartCoroutine(DamageFlash());
+
+        if (life <= 0 )
         {
             Die();
         }
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        // Changer la couleur à rouge
+        playerRenderer.material.color = damageColor;
+
+        // Attendre un petit moment (0.2 secondes par exemple)
+        yield return new WaitForSeconds(0.2f);
+
+        // Revenir à la couleur normale
+        playerRenderer.material.color = normalColor;
     }
 
     private void Die()

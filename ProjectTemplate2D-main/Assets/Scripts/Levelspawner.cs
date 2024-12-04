@@ -6,6 +6,10 @@ public class LevelSpawner : MonoBehaviour
 {
     public GameObject[] levelParts; // Tableau contenant vos 3 prefabs
     public Transform[] spawnPoints; // Points où les parties vont spawn
+    public GameObject finLevel;
+    public Transform spawnPointEndLevel;
+    public GameObject startLevel;
+    public Transform spawnPointStartLevel;
 
     void Start()
     {
@@ -19,6 +23,7 @@ public class LevelSpawner : MonoBehaviour
         ShuffleList(shuffledParts);
 
         // S'assurer qu'on a assez de points de spawn
+        Instantiate(startLevel, spawnPointStartLevel);
         if (spawnPoints.Length < shuffledParts.Count)
         {
             Debug.LogError("Pas assez de points de spawn pour les parties de niveau !");
@@ -30,6 +35,7 @@ public class LevelSpawner : MonoBehaviour
         {
             Instantiate(shuffledParts[i], spawnPoints[i].position, Quaternion.identity);
         }
+        Instantiate(finLevel, spawnPointEndLevel);
     }
 
     void ShuffleList(List<GameObject> list)
